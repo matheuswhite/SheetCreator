@@ -1,24 +1,22 @@
 package view;
 
 import java.awt.Color;
+import java.util.LinkedList;
 
-import javax.swing.BorderFactory;
-import javax.swing.JEditorPane;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
+
+import br.ufal.ic.sheetCreator.*;
 
 public class DocumentView extends JPanel{
 	
-	private Border border;
+	private IDocument currentDoc;
+	private LinkedList<IDocument> pages;
 	
 	public DocumentView() {
-		this.border = BorderFactory.createLineBorder(Color.DARK_GRAY);
-		this.setBorder(BorderFactory.createCompoundBorder(this.border, BorderFactory.createEmptyBorder(10, 200, 10, 200)));
-		//(top, left, bottom, right)
+		currentDoc = new ProxyDocument();
 		
 		this.setOpaque(true);
 		this.setBackground(Color.WHITE);
-		this.setSize(10,10);
+		this.setSize(100, 100);
 	}
 }
