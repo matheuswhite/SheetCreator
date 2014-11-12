@@ -14,13 +14,10 @@ public abstract class IComponent extends JComponent{
 	protected JLabel label;
 	protected ImageIcon icon;
 	protected String pathImage;
-	protected int[] position;
-	protected int[] myPosition;
-	
-	public IComponent() {
-		this.position = new int[2];
-		this.myPosition = new int[2];
-	}
+	protected int position_x;
+	protected int myPosition_x;
+	protected int position_y;
+	protected int myPosition_y;
 	
 	protected abstract void draw();
 	
@@ -28,12 +25,20 @@ public abstract class IComponent extends JComponent{
 		return this.label;
 	}
 	
-	public int[] getMyPosition() {
-		return this.myPosition;
+	public int getMyPositionX() {
+		return this.myPosition_x;
 	}
 	
-	public int[] getPosition() {
-		return this.position;
+	public int getPositionX() {
+		return this.position_x;
+	}
+	
+	public int getMyPositionY() {
+		return this.myPosition_y;
+	}
+	
+	public int getPositionY() {
+		return this.position_y;
 	}
 	
 	public Image resize(Image img, int width, int height) {
