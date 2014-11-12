@@ -27,9 +27,10 @@ public abstract class Notes extends Decorator{
 		icon.setImage(resize(icon.getImage(), this.getWidth(), this.getHeight()));
 		label.setIcon(icon);
 		
-		label.setBounds(this.getPosition()[0] + this.ordem.get(this.flags.get(Notes.CURSOR_POSITION)),
-				this.getPosition()[1] + this.ordem.get(this.flags.get(Notes.TONE_POSITION)),
-				this.getWidth(), this.getWidth());
+		this.myPosition[0] = this.getPosition()[0] + this.ordem.get(this.flags.get(Notes.CURSOR_POSITION));
+		this.myPosition[1] = this.getPosition()[1] + this.ordem.get(this.flags.get(Notes.TONE_POSITION));
+		
+		label.setBounds(this.myPosition[0], this.myPosition[1], this.getWidth(), this.getWidth());
 		
 	}
 }

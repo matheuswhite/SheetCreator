@@ -15,11 +15,21 @@ public abstract class IComponent extends JComponent{
 	protected ImageIcon icon;
 	protected String pathImage;
 	protected int[] position;
+	protected int[] myPosition;
+	
+	public IComponent() {
+		this.position = new int[2];
+		this.myPosition = new int[2];
+	}
 	
 	protected abstract void draw();
 	
 	public JLabel getLabel() {
 		return this.label;
+	}
+	
+	public int[] getMyPosition() {
+		return this.myPosition;
 	}
 	
 	public int[] getPosition() {

@@ -6,14 +6,14 @@ import javax.swing.JComponent;
 
 public class TrebleClef extends Clefs{
 	
-	private final int width = 0;
-	private final int height = 0;
-	private final int position_x = 0;
-	private final int position_y = 0;
+	private final int width = 20;
+	private final int height = 50;
+	private final int position_x = 20;
+	private final int position_y = 40;
 	
 	public TrebleClef(IComponent component, int[] position, ArrayList<Flag> flag) {
 		super(component, position, flag);
-		this.pathImage = "";
+		this.pathImage = "resource/trebleclef.png";
 	}
 
 	@Override
