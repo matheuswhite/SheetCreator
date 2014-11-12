@@ -1,5 +1,11 @@
 package br.ufal.ic.sheetCreator;
 
-public interface IDocument {
+import java.util.ArrayList;
 
+import br.ufal.ic.sheetCreator.decorator.*;
+
+public interface IDocument {
+	public Decorator addNote(int currentStaff, ArrayList<Flag> currentPosisiton);
+	public void setTitle(String title);
+	public void setAuthor(String author);
 }

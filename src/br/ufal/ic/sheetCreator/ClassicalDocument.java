@@ -17,5 +17,4 @@ public class ClassicalDocument extends Document {
 		this.add(staffs.get(2).getLabel());
 		this.add(staffs.get(3).getLabel());
 	}
-
 }
