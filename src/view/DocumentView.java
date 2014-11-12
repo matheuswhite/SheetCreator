@@ -25,11 +25,11 @@ public class DocumentView extends JPanel{
 	
 	public DocumentView() {
 		
-		docFactory = new ClassicalDocumentFactory();
+		//docFactory = new ClassicalDocumentFactory();
 		
-		currentDoc = docFactory.createDocument("Música 1", "Matheus Tenório");
+		//currentDoc = docFactory.createDocument("Musica 1", "Matheus Tenorio");
 		
-		this.add((Component) this.currentDoc);
+		//this.add((Component) this.currentDoc);
 		
 		this.setBackground(Color.WHITE);
 	}

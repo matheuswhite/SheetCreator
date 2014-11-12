@@ -35,7 +35,7 @@ public abstract class Document extends JPanel implements IDocument {
 	@Override
 	public void setTitle(String title) {
 		if(title == null) {
-			this.title = new JLabel("Sem Título");
+			this.title = new JLabel("Sem Tï¿½tulo");
 		}
 		else {
 			this.title = new JLabel(title);
@@ -55,7 +55,8 @@ public abstract class Document extends JPanel implements IDocument {
 	@Override
 	public Decorator addNote(int currentStaff, ArrayList<Flag> currrentPosition) {
 		MusicalStaff staff = this.staffs.get(currentStaff);
-		int[] pos = staff.getMyPosition();
+		int pos_x = staff.getMyPositionX();
+		int pos_y = staff.getMyPositionY();
 		Factory factory = null;
 		
 		if(currrentPosition.get(Document.TYPE_NOTE).equals(Flag.WHOLE_NOTE)) {
@@ -64,7 +65,7 @@ public abstract class Document extends JPanel implements IDocument {
 		
 		currrentPosition.remove(Document.TYPE_NOTE);
 		
-		Decorator note = factory.createDecoratorItem(staff, pos, currrentPosition);
+		Decorator note = factory.createDecoratorItem(staff, pos_x, pos_y, currrentPosition);
 		
 		this.add(note.getLabel());
 		

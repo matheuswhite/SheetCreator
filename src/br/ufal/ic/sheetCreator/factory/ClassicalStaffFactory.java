@@ -9,12 +9,17 @@ public class ClassicalStaffFactory extends StaffFactory {
 	@Override
 	public MusicalStaff createMusicalStaff(Flag ordemFlag) {
 		Factory clef = new TrebleClefFactory();
+		Factory keySignature = new NaturalKeySignatureFactory();
+		Factory compass = new ClassicalCompassFactory();
+		
 		MusicalStaff classicalStaff = new MusicalStaff(ordemFlag);
 		
 		ArrayList<Flag> flags = new ArrayList<Flag>();
 		flags.add(Flag.CLASSICAL_TREBLE_CLEF);
 		
-		classicalStaff.add(clef.createDecoratorItem(classicalStaff, classicalStaff.getMyPosition(), 
+		classicalStaff.addItem(clef.createDecoratorItem(classicalStaff, classicalStaff.getMyPositionX(), classicalStaff.getMyPositionY(), flags));
+		classicalStaff.addItem(compass.createDecoratorItem(classicalStaff, classicalStaff.getMyPositionX(), classicalStaff.getMyPositionY(), flags));
+		classicalStaff.addItem(keySignature.createDecoratorItem(classicalStaff, classicalStaff.getMyPositionX(), classicalStaff.getMyPositionY(), 
 				flags));
 		
 		return classicalStaff;

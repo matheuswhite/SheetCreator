@@ -47,6 +47,10 @@ public class MusicalStaff extends IComponent{
 		}
 	}
 	
+	public List<Decorator> getListItens() {
+		return this.listItens;
+	}
+	
 	private boolean isthere(Decorator item) {
 		for (Decorator dec  : this.listItens) {
 			if(item instanceof Clefs || item instanceof Compass || item instanceof KeySignature) {
@@ -60,7 +64,7 @@ public class MusicalStaff extends IComponent{
 	@Override
 	protected void draw() {
 		try {
-			this.pathImage = "resource/musicstaff.svg.png";
+			//this.pathImage = "resource/musicstaff.svg.png";
 			this.icon = new ImageIcon(this.pathImage);
 			
 			this.label = new JLabel();

@@ -1,7 +1,10 @@
 package view;
 
 import java.awt.Component;
+
+
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
 import javax.swing.JFrame;
@@ -11,8 +14,6 @@ import javax.swing.JPanel;
 import br.ufal.ic.sheetCreator.IDocument;
 import br.ufal.ic.sheetCreator.factory.ClassicalDocumentFactory;
 import br.ufal.ic.sheetCreator.factory.DocumentFactory;
-
-import com.sun.glass.events.KeyEvent;
 
 public class MainWindow extends JFrame{
 	
@@ -24,15 +25,15 @@ public class MainWindow extends JFrame{
 	public MainWindow() {
 		this.menu = new Menu();
 		this.docview = new DocumentView();
-		this.docfactory = new ClassicalDocumentFactory();
+		//this.docfactory = new ClassicalDocumentFactory();
 		
-		this.doc = this.docfactory.createDocument("Musica 1", "Matheus Tenório");
+		//this.doc = this.docfactory.createDocument("Musica 1", "Matheus Tenï¿½rio");
 		
 		this.setJMenuBar(this.menu);
 		this.createMenus();
 		this.menu.newAction();
 		
-		this.getContentPane().add((Component) doc);
+		this.getContentPane().add(docview);
 		this.setSize(650, 650);
 		this.setResizable(false);
 		this.setTitle("SheetCreator");
@@ -40,6 +41,8 @@ public class MainWindow extends JFrame{
 		this.setVisible(true);
 	}
 	
+	//remover os 'KeyEvents'.
+	//aparentemente nÃ£o funcionam no linux
 	public void createMenus() {
 		JMenu temp = this.menu.createMenu("Arquivo", KeyEvent.VK_A, "test description");
 		LinkedList<Integer> listTemp = new LinkedList<Integer>();

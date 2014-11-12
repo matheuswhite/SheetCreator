@@ -1,6 +1,6 @@
 package br.ufal.ic.sheetCreator.decorator;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import java.util.Hashtable;
 
@@ -10,13 +10,14 @@ import javax.swing.JLabel;
 public abstract class Notes extends Decorator{
 
 	private Hashtable<Flag, Integer> ordem;
-	private JLabel accidentalSymbol;
+	protected JLabel accidentalSymbol;
 	
 	public static final int CURSOR_POSITION = 0;
 	public static final int TONE_POSITION = 1;
+	public static final int ACCIDENTAL_SYMBOL = 2;
 	
-	public Notes(IComponent component, int position_x, int position_y, ArrayList<Flag> ordemFlag) {
-		super(component, position_x, position_y, ordemFlag);
+	public Notes(IComponent component, int position_x, int position_y, List<Flag> flag) {
+		super(component, position_x, position_y, flag);
 		
 		this.ordem = new Hashtable<Flag, Integer>();
 		
@@ -26,6 +27,7 @@ public abstract class Notes extends Decorator{
 	}
 
 	protected abstract void fillOrdemTable(Hashtable<Flag, Integer> table);
+	protected abstract void drawAccidentalSymbol();
 	
 	@Override
 	protected void draw() {
@@ -40,5 +42,8 @@ public abstract class Notes extends Decorator{
 		
 		label.setBounds(this.myPosition_x, this.myPosition_y, this.getWidth(), this.getWidth());
 		
+		if(this.flags.get(Notes.ACCIDENTAL_SYMBOL) != Flag.NONE) {
+			this.drawAccidentalSymbol();
+		}
 	}
 }

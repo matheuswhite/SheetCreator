@@ -1,6 +1,7 @@
 package view.popUpMenus;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -27,7 +28,7 @@ public class NewDocument extends JFrame{
 		this.setVisible(true);
 	}
 	
-	private void setCloseWindowAction(JButton btn, JFrame frame) {
+	private void setCloseWindowAction(JButton btn, final JFrame frame) {
 		btn.addActionListener(new ActionListener() {
 			
 			@Override

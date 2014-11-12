@@ -1,6 +1,6 @@
 package br.ufal.ic.sheetCreator.decorator;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import java.util.Hashtable;
 
@@ -15,8 +15,10 @@ public class Clefs extends Decorator {
 	protected int position_x;
 	protected int position_y;
 	
-	public Clefs(IComponent component, int position_x, int position_y, ArrayList<Flag> type) {
-		super(component, position_x, position_y, type);
+	public Clefs(IComponent component, int position_x, int position_y, List<Flag> flag) {
+		super(component, position_x, position_y, flag);
+		
+		this.types = new Hashtable<Flag, Integer>();
 		
 		this.draw();
 	}

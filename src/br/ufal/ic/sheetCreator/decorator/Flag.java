@@ -6,4 +6,5 @@ public enum Flag {
 	WHOLE_NOTE,
 	C ,D, E, F, G, A, B,
 	SHARP, FLAP, NATURAL_SIGN,
+	NONE,
 }
