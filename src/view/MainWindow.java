@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 
@@ -7,26 +8,31 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
 
+import br.ufal.ic.sheetCreator.IDocument;
+import br.ufal.ic.sheetCreator.factory.ClassicalDocumentFactory;
+import br.ufal.ic.sheetCreator.factory.DocumentFactory;
+
 import com.sun.glass.events.KeyEvent;
 
 public class MainWindow extends JFrame{
 	
-	private JPanel panel;
 	private Menu menu;
 	private DocumentView docview;
+	private IDocument doc;
+	private DocumentFactory docfactory;
 	
 	public MainWindow() {
-		this.panel = new JPanel();
 		this.menu = new Menu();
 		this.docview = new DocumentView();
+		this.docfactory = new ClassicalDocumentFactory();
+		
+		this.doc = this.docfactory.createDocument("Musica 1", "Matheus Tenório");
 		
 		this.setJMenuBar(this.menu);
 		this.createMenus();
 		this.menu.newAction();
 		
-		this.panel.add(docview);
-		
-		this.add(panel);
+		this.getContentPane().add((Component) doc);
 		this.setSize(650, 650);
 		this.setResizable(false);
 		this.setTitle("SheetCreator");
