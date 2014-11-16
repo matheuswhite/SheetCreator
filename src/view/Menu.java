@@ -2,22 +2,19 @@ package view;
 
 import java.awt.event.ActionEvent;
 
+
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.KeyStroke;
 
 import view.popUpMenus.NewDocument;
-
-import com.sun.xml.internal.ws.api.server.Container;
+import view.popUpMenus.NewNote;
+import view.popUpMenus.OpenDocument;
+import view.popUpMenus.SaveDocument;
 
 public class Menu extends JMenuBar {
 	private LinkedList<JMenuItem> itens;
@@ -52,15 +49,61 @@ public class Menu extends JMenuBar {
 		this.itens.add(temp);
 	}
 	
-	public void newAction() {
+	public void newAction(DocumentView docview) {
 		itens.get(0).addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				NewDocument newDoc = new NewDocument();
+				NewDocument newDoc = new NewDocument(docview);
 			}
 		});
 		
+		itens.get(1).addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				SaveDocument save = new SaveDocument();
+			}
+		});
 		
+		itens.get(2).addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				OpenDocument open = new OpenDocument();
+			}
+		});
+		
+		itens.get(3).addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				NewNote newnote = new NewNote();
+			}
+		});
+		
+		itens.get(4).addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				docview.nextPage();
+			}
+		});
+		
+		itens.get(5).addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				docview.prevPage();
+			}
+		});
+		
+		itens.get(6).addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				//desfazer
+			}
+		});
 	}
 }
