@@ -10,7 +10,7 @@ public class WholeNote extends Notes{
 	
 	public WholeNote(IComponent component, int position_x, int position_y, List<Flag> flag) {
 		super(component, position_x, position_y, flag);
-		//this.pathImage = "resource/wholenote.svg.png";
+		this.pathImage = "resource/wholenote.svg.png";
 	}
 
 	@Override

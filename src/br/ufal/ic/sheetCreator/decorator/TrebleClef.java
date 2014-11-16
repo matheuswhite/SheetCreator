@@ -1,20 +1,36 @@
 package br.ufal.ic.sheetCreator.decorator;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.JComponent;
+import java.util.List;
 
 public class TrebleClef extends Clefs{
 	
 	public TrebleClef(IComponent component, int position_x, int position_y, List<Flag> flag) {
 		super(component, position_x, position_y,flag);
-		//this.pathImage = "resource/trebleclef.png";
-		
-		this.width = 20;
-		this.height = 50;
-		
-		this.position_x = 20;
-		this.position_y = 40;
+	}
+	
+	@Override
+	public int getWidth() {
+		return 100;
+	}
+
+	@Override
+	public int getHeight() {
+		return 100;
+	}
+
+	@Override
+	public String getPathImage() {
+		return "resource/G-Clef.svg.png";
+	}
+
+	@Override
+	public int getPosisionCX() {
+		return -13;
+	}
+
+	@Override
+	public int getPositionCY() {
+		return -25;
 	}
 }

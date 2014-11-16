@@ -15,7 +15,4 @@ public abstract class Decorator extends IComponent {
 		this.flags = flags;
 		this.draw();
 	}
-	
-	public abstract int getWidth();
-	public abstract int getHeight();
 }
