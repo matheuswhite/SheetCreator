@@ -1,10 +1,12 @@
 package br.ufal.ic.sheetCreator;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import br.ufal.ic.sheetCreator.decorator.Decorator;
 import br.ufal.ic.sheetCreator.decorator.Flag;
@@ -17,6 +19,11 @@ public abstract class Document extends JPanel implements IDocument {
 	
 	private JLabel title;
 	private JLabel author;
+	private Font auxfont;
+	private String auxstring;
+	private int titleWidth;
+	private int titleCoordinate_x;
+	private int titleCoordinate_y;
 	
 	private ArrayList<MusicalStaff> staffs;
 	public static final int TYPE_NOTE = 2;
@@ -24,6 +31,12 @@ public abstract class Document extends JPanel implements IDocument {
 	public Document(String title, String author, ArrayList<MusicalStaff> staffs) {
 		this.setLayout(null);
 		this.staffs = staffs;
+		this.titleWidth = 34;
+		
+		this.titleCoordinate_x = 20;
+		this.titleCoordinate_y = 5;
+		
+		this.setBackground(Color.WHITE);
 		
 		this.setTitle(title);
 		this.setAuthor(author);
@@ -32,24 +45,34 @@ public abstract class Document extends JPanel implements IDocument {
 	
 	public abstract void setStaffs(ArrayList<MusicalStaff> staffs);
 	
+	public ArrayList<MusicalStaff> getStaffs() {
+		return this.staffs;
+	}
+	
 	@Override
 	public void setTitle(String title) {
-		if(title == null) {
-			this.title = new JLabel("Sem T�tulo");
+		if(title == null || title == "") {
+			title = "Sem Titulo";
 		}
-		else {
-			this.title = new JLabel(title);
-		}
+		
+		this.title = new JLabel(title);
+		this.title.setSize(500, 50);
+		this.title.setLocation(titleCoordinate_x, titleCoordinate_y);
+		this.title.setFont(new Font("Arial", Font.PLAIN, this.titleWidth));
+		this.add(this.title);
 	}
 	
 	@Override
 	public void setAuthor(String author) {
-		if(author == null) {
-			this.author = new JLabel("Sem Autor");
+		if(author == null || author == "") {
+			author = "Sem Autor";
 		}
-		else {
-			this.author = new JLabel(author);
-		}
+		
+		this.author = new JLabel(author);
+		this.author.setSize(500, 50);
+		this.author.setLocation(titleCoordinate_x, titleCoordinate_y + 35);
+		this.author.setFont(new Font("Arial", Font.PLAIN, (this.titleWidth / 2) ));
+		this.add(this.author);
 	}
 	
 	@Override
@@ -70,5 +93,11 @@ public abstract class Document extends JPanel implements IDocument {
 		this.add(note.getLabel());
 		
 		return note;
+	}
+	
+	@Override
+	public Decorator delNote() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
