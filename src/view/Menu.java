@@ -86,7 +86,7 @@ public class Menu extends JMenuBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				docview.nextPage();
+				//deletar nota
 			}
 		});
 		
@@ -94,11 +94,19 @@ public class Menu extends JMenuBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				docview.prevPage();
+				docview.nextPage();
 			}
 		});
 		
 		itens.get(6).addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				docview.prevPage();
+			}
+		});
+		
+		itens.get(7).addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

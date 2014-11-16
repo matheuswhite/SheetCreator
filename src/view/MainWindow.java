@@ -36,7 +36,7 @@ public class MainWindow extends JFrame{
 		LinkedList<Integer> listTemp = new LinkedList<Integer>();
 		
 		
-		/**/
+		/*Arquivo*/
 		JMenu temp = this.menu.createMenu("Arquivo", KeyEvent.VK_A, "");
 		
 		listTemp.add(KeyEvent.VK_N);
@@ -57,7 +57,7 @@ public class MainWindow extends JFrame{
 		this.menu.addMenuItem(temp, "Abrir Documento", "", listTemp);
 		listTemp.clear();
 		
-		/**/
+		/*Editar*/
 		
 		temp = this.menu.createMenu("Editar", KeyEvent.VK_E, "");
 		
@@ -67,7 +67,13 @@ public class MainWindow extends JFrame{
 		this.menu.addMenuItem(temp, "Nova Nota", "", listTemp);
 		listTemp.clear();
 		
-		/**/
+		listTemp.add(KeyEvent.VK_DELETE);
+		listTemp.add(KeyEvent.VK_DELETE);
+		listTemp.add(ActionEvent.CTRL_MASK);
+		this.menu.addMenuItem(temp, "Deletar Nota", "", listTemp);
+		listTemp.clear();
+		
+		/*Navegacao*/
 		temp = this.menu.createMenu("Navegacao", KeyEvent.VK_N, "");
 		
 		listTemp.add(KeyEvent.VK_RIGHT);
