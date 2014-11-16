@@ -60,8 +60,16 @@ public class ProxyDocument implements IDocument{
 	
 	@Override
 	public Decorator delNote() {
-		// TODO Auto-generated method stub
-		return null;
+		Decorator dec = null;
+		
+		if(!this.notes.isEmpty()) {
+			dec = this.notes.get(this.notes.size() - 1);
+			this.notes.remove(this.notes.size() - 1);
+		
+			this.doc.remove(dec);
+		}
+		
+		return dec;
 	}
 
 }
