@@ -17,10 +17,8 @@ public class ClassicalStaffFactory extends StaffFactory {
 		ArrayList<Flag> flags = new ArrayList<Flag>();
 		flags.add(Flag.CLASSICAL_TREBLE_CLEF);
 		
-		classicalStaff.addItem(clef.createDecoratorItem(classicalStaff, classicalStaff.getMyPositionX(), classicalStaff.getMyPositionY(), flags));
-		classicalStaff.addItem(compass.createDecoratorItem(classicalStaff, classicalStaff.getMyPositionX(), classicalStaff.getMyPositionY(), flags));
-		classicalStaff.addItem(keySignature.createDecoratorItem(classicalStaff, classicalStaff.getMyPositionX(), classicalStaff.getMyPositionY(), 
-				flags));
+		classicalStaff.setClef(clef.createDecoratorItem(classicalStaff, classicalStaff.getMyPositionX(), classicalStaff.getMyPositionY(), flags));
+		classicalStaff.setCompass(compass.createDecoratorItem(classicalStaff, classicalStaff.getMyPositionX(), classicalStaff.getMyPositionY(), flags));
 		
 		return classicalStaff;
 	}

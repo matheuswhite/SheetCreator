@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import br.ufal.ic.sheetCreator.ClassicalDocument;
 import br.ufal.ic.sheetCreator.Document;
+import br.ufal.ic.sheetCreator.decorator.Decorator;
 import br.ufal.ic.sheetCreator.decorator.Flag;
 import br.ufal.ic.sheetCreator.decorator.MusicalStaff;
 
