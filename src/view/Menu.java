@@ -11,6 +11,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import br.ufal.ic.sheetCreator.PlayerSong;
 import view.popUpMenus.NewDocument;
 import view.popUpMenus.NewNote;
 import view.popUpMenus.OpenDocument;
@@ -49,7 +50,7 @@ public class Menu extends JMenuBar {
 		this.itens.add(temp);
 	}
 	
-	public void newAction(DocumentView docview) {
+	public void newAction(DocumentView docview, PlayerSong player) {
 		itens.get(0).addActionListener(new ActionListener() {
 			
 			@Override
@@ -111,6 +112,14 @@ public class Menu extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//desfazer
+			}
+		});
+		
+		itens.get(8).addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				//play music
 			}
 		});
 	}

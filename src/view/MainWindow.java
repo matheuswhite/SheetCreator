@@ -8,20 +8,24 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
 
+import br.ufal.ic.sheetCreator.PlayerSong;
+
 public class MainWindow extends JFrame{
 	
 	private Menu menu;
 	private DocumentView docview;
 	private JPanel actualpanel;
+	private PlayerSong player;
 	
 	public MainWindow() {
 		this.menu = new Menu();
 		this.docview = new DocumentView(this);
 		this.actualpanel = new JPanel();
+		this.player = new PlayerSong();
 		
 		this.setJMenuBar(this.menu);
 		this.createMenus();
-		this.menu.newAction(this.docview);
+		this.menu.newAction(this.docview, this.player);
 		
 		this.getContentPane().add(docview);
 		this.setSize(650, 650);
@@ -74,7 +78,7 @@ public class MainWindow extends JFrame{
 		listTemp.clear();
 		
 		/*Navegacao*/
-		temp = this.menu.createMenu("Navegacao", KeyEvent.VK_N, "");
+		temp = this.menu.createMenu("Navegacao", KeyEvent.VK_V, "");
 		
 		listTemp.add(KeyEvent.VK_RIGHT);
 		listTemp.add(KeyEvent.VK_RIGHT);
@@ -93,5 +97,15 @@ public class MainWindow extends JFrame{
 		listTemp.add(ActionEvent.CTRL_MASK);
 		this.menu.addMenuItem(temp, "Desfazer", "", listTemp);
 		listTemp.clear();
+		
+		/*Player*/
+		temp = this.menu.createMenu("Player", KeyEvent.VK_Y, "");
+		
+		listTemp.add(KeyEvent.VK_P);
+		listTemp.add(KeyEvent.VK_P);
+		listTemp.add(ActionEvent.CTRL_MASK);
+		this.menu.addMenuItem(temp, "Play!", "", listTemp);
+		listTemp.clear();
+		
 	}
 }
