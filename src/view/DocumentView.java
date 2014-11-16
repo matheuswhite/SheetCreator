@@ -2,18 +2,10 @@ package view;
 
 import java.awt.Color;
 
-
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-
-
-
-
-
 
 import br.ufal.ic.sheetCreator.*;
 import br.ufal.ic.sheetCreator.decorator.Flag;
@@ -94,5 +86,9 @@ public class DocumentView extends JPanel{
 			
 			this.setPanel((JPanel) ((ProxyDocument) this.currentDoc).getDoc());
 		}
+	}
+	
+	public IDocument getCurrenteEditDoc() {
+		return this.currentEditDoc;
 	}
 }

@@ -1,20 +1,17 @@
 package view.popUpMenus;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
-import com.sun.glass.events.KeyEvent;
 
 import br.ufal.ic.sheetCreator.decorator.Flag;
 import view.DocumentView;
-import view.MainWindow;
 
 public class NewDocument extends JFrame{
 	
