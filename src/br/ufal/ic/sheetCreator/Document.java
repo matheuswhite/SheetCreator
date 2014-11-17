@@ -26,7 +26,7 @@ public abstract class Document extends JPanel implements IDocument {
 	private int titleCoordinate_y;
 	
 	private ArrayList<MusicalStaff> staffs;
-	public static final int TYPE_NOTE = 2;
+	public static final int TYPE_NOTE = 0;
 	
 	public Document(String title, String author, ArrayList<MusicalStaff> staffs) {
 		this.setLayout(null);
@@ -85,6 +85,15 @@ public abstract class Document extends JPanel implements IDocument {
 		if(currrentPosition.get(Document.TYPE_NOTE).equals(Flag.WHOLE_NOTE)) {
 			factory = new WholeNoteFactory();
 		}
+		else if(currrentPosition.get(Document.TYPE_NOTE).equals(Flag.HALF_NOTE)) {
+		
+		}
+		else if(currrentPosition.get(Document.TYPE_NOTE).equals(Flag.QUARTER_NOTE)) {
+			
+		}
+		else if(currrentPosition.get(Document.TYPE_NOTE).equals(Flag.EIGHTH_NOTE)) {
+			
+		}
 		
 		currrentPosition.remove(Document.TYPE_NOTE);
 		
@@ -93,11 +102,5 @@ public abstract class Document extends JPanel implements IDocument {
 		this.add(note.getLabel());
 		
 		return note;
-	}
-	
-	@Override
-	public Decorator delNote() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

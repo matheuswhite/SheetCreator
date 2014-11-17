@@ -12,9 +12,9 @@ public abstract class Notes extends Decorator{
 	private Hashtable<Flag, Integer> ordem;
 	protected JLabel accidentalSymbol;
 	
-	public static final int CURSOR_POSITION = 0;
-	public static final int TONE_POSITION = 1;
-	public static final int ACCIDENTAL_SYMBOL = 2;
+	public static final int CURSOR_POSITION = 1;
+	public static final int TONE_POSITION = 2;
+	public static final int ACCIDENTAL_SYMBOL = 3;
 	
 	public Notes(IComponent component, int position_x, int position_y, List<Flag> flag) {
 		super(component, position_x, position_y, flag);

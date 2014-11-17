@@ -1,7 +1,7 @@
 package br.ufal.ic.sheetCreator;
 
 import java.util.ArrayList;
-
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,14 +13,44 @@ public class ProxyDocument implements IDocument{
 	private Document doc;
 	private StaffState state;
 	
+	private int currentValueInCompass = 0;
+	private int currentPosition = 1;
+	
+	public boolean addBarCompass = false;
+	
+	private int currentStaff = 1;
+	
 	public ProxyDocument(Document doc) {
 		this.doc = doc;
 		this.notes = new LinkedList<Decorator>();
 		this.state = new StaffState(doc.getStaffs().get(0));
 	}
 	
+	public StaffState getStaffState() {
+		return this.state;
+	}
+	
 	public Document getDoc() {
 		return this.doc;
+	}
+	
+	private double valNote(Flag dec) {
+		double exit = 0;
+		
+		if(dec.equals(Flag.WHOLE_NOTE)) {
+			exit = 4;
+		}
+		else if(dec.equals(Flag.HALF_NOTE)) {
+			exit = 2;
+		}
+		else if(dec.equals(Flag.QUARTER_NOTE)) {
+			exit = 1;
+		}
+		else if(dec.equals(Flag.EIGHTH_NOTE)) {
+			exit = 0.5; 
+		}
+		
+		return exit;
 	}
 	
 	@Override
@@ -33,43 +63,53 @@ public class ProxyDocument implements IDocument{
 		this.doc.setAuthor(author);
 	}
 
-	//fazer
 	@Override
 	public Decorator addNote(int currentStaff, ArrayList<Flag> currentPosisition) {
-		Flag created = null;
 		Decorator dec = null;
+		double val = 0;
+		ArrayList<Flag> listFlags = null;
 		
-		created = this.state.incrementState(currentPosisition.get(Document.TYPE_NOTE));
+		listFlags.add(currentPosisition.get(Document.TYPE_NOTE));
 		
-		if(created.equals(Flag.NO_FULL)) {
-			dec = this.doc.addNote(currentStaff, currentPosisition);
-			this.notes.add(dec);
+		val = this.valNote(currentPosisition.get(Document.TYPE_NOTE));
+		
+		this.currentValueInCompass += val;
+		
+		if(this.currentStaff >= 4){
+			return null;
 		}
-		else if(created.equals(Flag.CHANGE_STAFF)) {
-			dec = this.doc.addNote(currentStaff, currentPosisition);
-			this.notes.add(dec);
-			//mudar de staff
+		
+		if(this.currentPosition >= 8) {
+			this.currentPosition = 1;
+			this.currentStaff++;
 		}
-		else if(created.equals(Flag.NOT_CREATED)) {
-			//está cheio o documento
+		
+		if(this.currentValueInCompass == 4){
+			this.addBarCompass = true;
+			this.currentValueInCompass = 0;
 		}
+		if(this.currentValueInCompass <= 4) {
+			this.currentPosition++;
+		}
+		else if(this.currentValueInCompass > 4) {
+			if(this.currentPosition >= 1 && this.currentPosition <= 3) {
+				this.currentPosition = 5;
+			}
+			else if(this.currentPosition >= 5 && this.currentPosition <= 7) {
+				this.currentPosition = 1;
+				this.currentStaff++;
+			}
+		}
+		
+		
+		
+		
+		listFlags.add();
+		
+		dec = this.doc.addNote(this.currentStaff, listFlags);
+		this.notes.add(dec);
 		
 		//se retornar null o doc está cheio
 		return dec;
 	}
-	
-	@Override
-	public Decorator delNote() {
-		Decorator dec = null;
-		
-		if(!this.notes.isEmpty()) {
-			dec = this.notes.get(this.notes.size() - 1);
-			this.notes.remove(this.notes.size() - 1);
-		
-			this.doc.remove(dec);
-		}
-		
-		return dec;
-	}
-
 }
