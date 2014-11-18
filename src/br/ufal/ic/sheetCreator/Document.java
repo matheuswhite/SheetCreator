@@ -1,7 +1,6 @@
 package br.ufal.ic.sheetCreator;
 
 import java.awt.Color;
-
 import java.awt.Font;
 import java.util.ArrayList;
 
@@ -77,6 +76,8 @@ public abstract class Document extends JPanel implements IDocument {
 		int pos_y = staff.getMyPositionY();
 		Factory factory = null;
 		
+		
+		
 		if(currrentPosition.get(Document.TYPE_NOTE).equals(Flag.WHOLE_NOTE)) {
 			factory = new WholeNoteFactory();
 		}
@@ -90,9 +91,31 @@ public abstract class Document extends JPanel implements IDocument {
 			
 		}
 		
+		System.out.println("pos_x" + pos_x);
+		System.out.println("pos_y" + pos_y);
+		
+		if(currrentPosition.get(0).equals(Flag.WHOLE_NOTE)) {
+			System.out.println("114");
+		}
+		if(currrentPosition.get(1).equals(Flag.PRIMEIRA)) {
+			System.out.println("115");
+		}
+		if(currrentPosition.get(2).equals(Flag.C)) {
+			System.out.println("116");
+		}
+		if(currrentPosition.get(3).equals(Flag.NATURAL_SIGN)) {
+			System.out.println("117");
+		}
+		
 		Decorator note = factory.createDecoratorItem(staff, pos_x, pos_y, currrentPosition);
 		
+		if(note != null) {
+			System.out.println("103x");
+		}
+		
 		this.add(note.getLabel());
+		this.validate();
+		this.repaint();
 		
 		return note;
 	}

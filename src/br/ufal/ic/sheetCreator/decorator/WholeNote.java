@@ -1,6 +1,5 @@
 package br.ufal.ic.sheetCreator.decorator;
 
-import java.util.Hashtable;
 import java.util.List;
 
 public class WholeNote extends Notes{
@@ -11,32 +10,12 @@ public class WholeNote extends Notes{
 
 	@Override
 	public int getWidth() {
-		return 20;
+		return 60;
 	}
 
 	@Override
 	public int getHeight() {
-		return 40;
-	}
-
-	@Override
-	protected void fillOrdemTable(Hashtable<Flag, Integer> table) {
-		table.put(Flag.PRIMEIRA, 50);
-		table.put(Flag.SEGUNDA, 60);
-		table.put(Flag.TERCEIRA, 70);
-		table.put(Flag.QUARTA, 80);
-		table.put(Flag.QUINTA, 90);
-		table.put(Flag.SEXTA, 100);
-		table.put(Flag.SETIMA, 110);
-		table.put(Flag.OITAVA, 120);
-		
-		table.put(Flag.C, 20);
-		table.put(Flag.D, 40);
-		table.put(Flag.E, 60);
-		table.put(Flag.F, 80);
-		table.put(Flag.G, 100);
-		table.put(Flag.A, 120);
-		table.put(Flag.B, 140);
+		return 30;
 	}
 
 	@Override
@@ -46,6 +25,23 @@ public class WholeNote extends Notes{
 
 	@Override
 	public int getPosisionCX() {
+		if(flags.get(0).equals(Flag.WHOLE_NOTE)) {
+			System.out.println("130");
+		}
+		if(flags.get(1).equals(Flag.PRIMEIRA)) {
+			System.out.println("131");
+		}
+		if(flags.get(2).equals(Flag.C)) {
+			System.out.println("132");
+		}
+		if(flags.get(3).equals(Flag.NATURAL_SIGN)) {
+			System.out.println("133");
+		}
+		
+		if(this.ordem.get(this.flags.get(1)) == Integer.valueOf(50)) {
+			System.out.println("100x");
+		}
+		
 		return this.ordem.get(this.flags.get(Notes.CURSOR_POSITION));
 	}
 

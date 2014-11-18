@@ -12,12 +12,6 @@ public class QuarterNote extends Notes{
 	}
 
 	@Override
-	protected void fillOrdemTable(Hashtable<Flag, Integer> table) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public int getWidth() {
 		// TODO Auto-generated method stub
 		return 0;

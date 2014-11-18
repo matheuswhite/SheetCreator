@@ -1,7 +1,8 @@
 package br.ufal.ic.sheetCreator.decorator;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -9,7 +10,6 @@ import javax.swing.JLabel;
 public abstract class Notes extends Decorator{
 
 	protected Hashtable<Flag, Integer> ordem;
-	protected JLabel accidentalSymbol;
 	
 	public static final int CURSOR_POSITION = 1;
 	public static final int TONE_POSITION = 2;
@@ -17,8 +17,6 @@ public abstract class Notes extends Decorator{
 	
 	public Notes(IComponent component, int position_x, int position_y, List<Flag> flag) {
 		super(component, position_x, position_y, flag);
-		
-		this.ordem = new Hashtable<Flag, Integer>();
 		
 		this.draw();
 	}
@@ -29,29 +27,52 @@ public abstract class Notes extends Decorator{
 	public abstract int getPosisionCX();
 	public abstract int getPositionCY();
 	
-	protected abstract void fillOrdemTable(Hashtable<Flag, Integer> table);
+	protected void fillOrdemTable() {
+		System.out.println("test1");
+		
+		this.ordem = new Hashtable<Flag, Integer>();
+		
+		System.out.println("test2");
+		
+		int initval = 130;
+		int initvaly = 40;
+		
+		ordem.put(Flag.PRIMEIRA, initval);
+		ordem.put(Flag.SEGUNDA, initval + 10);
+		ordem.put(Flag.TERCEIRA, initval + 20);
+		ordem.put(Flag.QUARTA, initval + 30);
+		ordem.put(Flag.QUINTA, initval + 40);
+		ordem.put(Flag.SEXTA, initval + 50);
+		ordem.put(Flag.SETIMA, initval + 60);
+		ordem.put(Flag.OITAVA, initval + 70);
+		
+		ordem.put(Flag.C, initvaly);
+		ordem.put(Flag.D, initvaly + 20);
+		ordem.put(Flag.E, initvaly + 40);
+		ordem.put(Flag.F, initvaly + 60);
+		ordem.put(Flag.G, initvaly + 80);
+		ordem.put(Flag.A, initvaly + 100);
+		ordem.put(Flag.B, initvaly + 120);
+		
+		System.out.println("test3");
+	}
 	
 	@Override
 	protected void draw() {
-		/*
-		this.icon = new ImageIcon(this.pathImage);
-		this.label = new JLabel();
+		this.fillOrdemTable();
 		
-		icon.setImage(resize(icon.getImage(), this.getWidth(), this.getHeight()));
-		label.setIcon(icon);
-		
-		Flag flag1 = this.flags.get(Notes.CURSOR_POSITION);
-		Flag flag2 = this.flags.get(Notes.TONE_POSITION);
-		
-		this.myPosition_x = this.position_x + this.ordem.get(flag1);
-		this.myPosition_y = this.position_y + this.ordem.get(flag2);
-		
-		label.setBounds(this.myPosition_x, this.myPosition_y, this.getWidth(), this.getWidth());
-		
-		/*
-		if(this.flags.get(Notes.ACCIDENTAL_SYMBOL) != Flag.NONE) {
-			
-		}*/
+		if(flags.get(0).equals(Flag.WHOLE_NOTE)) {
+			System.out.println("126");
+		}
+		if(flags.get(1).equals(Flag.PRIMEIRA)) {
+			System.out.println("127");
+		}
+		if(flags.get(2).equals(Flag.C)) {
+			System.out.println("128");
+		}
+		if(flags.get(3).equals(Flag.NATURAL_SIGN)) {
+			System.out.println("129");
+		}
 		
 		this.icon = new ImageIcon(this.getPathImage());
 		this.label = new JLabel();
@@ -62,6 +83,9 @@ public abstract class Notes extends Decorator{
 		this.myPosition_y = this.position_x + this.getPosisionCX();
 		this.myPosition_x = this.position_y + this.getPositionCY();
 		
-		label.setBounds(this.myPosition_y, this.myPosition_x ,this.getWidth(), this.getWidth());
+		System.out.println("pos_x: " + this.myPosition_x);
+		System.out.println("pos_y: " + this.myPosition_y);
+		
+		label.setBounds(this.myPosition_x, this.myPosition_y ,this.getWidth(), this.getWidth());
 	}
 }

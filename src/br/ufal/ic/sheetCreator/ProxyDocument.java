@@ -83,6 +83,19 @@ public class ProxyDocument implements IDocument{
 		listFlags.add(currentPosisition.get(Notes.TONE_POSITION));
 		listFlags.add(currentPosisition.get(Notes.ACCIDENTAL_SYMBOL));
 		
+		if(listFlags.get(0).equals(Flag.WHOLE_NOTE)) {
+			System.out.println("105");
+		}
+		if(listFlags.get(1).equals(Flag.NONE)) {
+			System.out.println("106");
+		}
+		if(listFlags.get(2).equals(Flag.C)) {
+			System.out.println("107");
+		}
+		if(listFlags.get(3).equals(Flag.NATURAL_SIGN)) {
+			System.out.println("108");
+		}
+		
 		val = this.valNote(currentPosisition.get(Document.TYPE_NOTE));
 		
 		this.currentValueInCompass += val;
@@ -139,9 +152,31 @@ public class ProxyDocument implements IDocument{
 	}
 	
 	private void updateNotes(ArrayList<Flag> listFlags, Decorator dec) {
-		listFlags.add(Notes.CURSOR_POSITION, this.positionFlags.get(this.currentPosition));
+		if(listFlags.get(0).equals(Flag.WHOLE_NOTE)) {
+			System.out.println("109");
+		}
+		if(listFlags.get(1).equals(Flag.NONE)) {
+			System.out.println("110");
+		}
+		if(listFlags.get(2).equals(Flag.C)) {
+			System.out.println("111");
+		}
+		if(listFlags.get(3).equals(Flag.NATURAL_SIGN)) {
+			System.out.println("112");
+		}
 		
-		dec = this.doc.addNote(this.currentStaff, listFlags);
+		Flag aux = listFlags.get(Notes.TONE_POSITION);
+		Flag aux2 = listFlags.get(Notes.ACCIDENTAL_SYMBOL);
+		
+		listFlags.add(Notes.CURSOR_POSITION, this.positionFlags.get(this.currentPosition));
+		listFlags.add(Notes.TONE_POSITION, aux);
+		listFlags.add(Notes.ACCIDENTAL_SYMBOL, aux2);
+		
+		if(listFlags.get(1).equals(Flag.PRIMEIRA)) {
+			System.out.println("113");
+		}
+		
+		dec = this.doc.addNote(this.currentStaff -1, listFlags);
 		this.notes.add(dec);
 	}
 }

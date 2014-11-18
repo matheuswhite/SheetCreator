@@ -175,15 +175,23 @@ public class NewNote extends JFrame {
 			((ProxyDocument) this.doc).addBarCompass = false;
 		}
 		
-		try{
-			listFlags.add(this.tableFlags.get(type));
-			listFlags.add(Flag.NONE);
-			listFlags.add(this.tableFlags.get(tone.substring(0, 1)));
-			listFlags.add(this.tableFlags.get(accident));
+		
+		listFlags.add(this.tableFlags.get(type));
+		listFlags.add(Flag.NONE);
+		listFlags.add(this.tableFlags.get(tone.substring(0, 1)));
+		listFlags.add(this.tableFlags.get(accident));
+		
+		if(listFlags.get(0).equals(Flag.WHOLE_NOTE)) {
+			System.out.println("101");
 		}
-		catch(NullPointerException ex) {
-			System.out.println("Erro na criacao de notas - 101");
-			ex.printStackTrace();
+		if(listFlags.get(1).equals(Flag.NONE)) {
+			System.out.println("102");
+		}
+		if(listFlags.get(2).equals(Flag.C)) {
+			System.out.println("103");
+		}
+		if(listFlags.get(3).equals(Flag.NATURAL_SIGN)) {
+			System.out.println("104");
 		}
 		
 		((ProxyDocument) this.doc).addNote(0, listFlags);

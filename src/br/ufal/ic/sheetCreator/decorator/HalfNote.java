@@ -11,11 +11,6 @@ public class HalfNote extends Notes {
 	}
 
 	@Override
-	protected void fillOrdemTable(Hashtable<Flag, Integer> table) {
-		
-	}
-
-	@Override
 	public int getWidth() {
 		// TODO Auto-generated method stub
 		return 0;
