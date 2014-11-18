@@ -17,6 +17,7 @@ public class DocumentView extends JPanel{
 	private IDocument currentDoc;
 	private IDocument currentEditDoc;
 	private LinkedList<IDocument> pages;
+
 	private DocumentFactory docFactory;
 	private JFrame mainframe;
 	
@@ -31,6 +32,10 @@ public class DocumentView extends JPanel{
 		this.mainframe = frame;
 		
 		this.setBackground(Color.DARK_GRAY);
+	}
+	
+	public LinkedList<IDocument> getPages() {
+		return pages;
 	}
 	
 	public void setPanel(JPanel newdoc) {

@@ -1,9 +1,9 @@
 package view.popUpMenus;
 
 import java.awt.BorderLayout;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 import javax.swing.JButton;
@@ -16,6 +16,7 @@ import br.ufal.ic.sheetCreator.FlagSongs;
 import br.ufal.ic.sheetCreator.IDocument;
 import br.ufal.ic.sheetCreator.PlayerSong;
 import br.ufal.ic.sheetCreator.ProxyDocument;
+import br.ufal.ic.sheetCreator.decorator.Flag;
 import view.DocumentView;
 
 public class NewNote extends JFrame {
@@ -24,6 +25,7 @@ public class NewNote extends JFrame {
 	private PlayerSong player;
 	
 	private Hashtable<String, FlagSongs> typesTable, tonesTable, accidentTable, toneNumberTable;
+	private Hashtable<String, Flag> tableFlags;
 	
 	private JPanel panelbtn, panel, panelAccidents;
 	
@@ -37,7 +39,8 @@ public class NewNote extends JFrame {
 		this.doc = view.getCurrenteEditDoc();
 		this.player = player;
 		
-		this.fillTables();
+		this.fillTableFlagSong();
+		this.fillTableFlags();
 		
 		this.initComponents(this);
 		
@@ -46,7 +49,33 @@ public class NewNote extends JFrame {
 		this.initFrame();
 	}
 	
-	private void fillTables() {
+	private void fillTableFlags() {
+		this.tableFlags = new Hashtable<String, Flag>();
+		
+		this.tableFlags.put("Semibreve", Flag.WHOLE_NOTE);
+		this.tableFlags.put("Seminima", Flag.HALF_NOTE);
+		this.tableFlags.put("Minima", Flag.QUARTER_NOTE);
+		this.tableFlags.put("Colcheia", Flag.EIGHTH_NOTE);
+		
+		this.tableFlags.put("C", Flag.C);
+		this.tableFlags.put("D", Flag.D);
+		this.tableFlags.put("E", Flag.E);
+		this.tableFlags.put("F", Flag.F);
+		this.tableFlags.put("G", Flag.G);
+		this.tableFlags.put("A", Flag.A);
+		this.tableFlags.put("B", Flag.B);
+		
+		this.tableFlags.put("# - Sustenido", Flag.SHARP);
+		this.tableFlags.put("b - Bemol", Flag.FLAT);
+		this.tableFlags.put("Natural", Flag.NATURAL_SIGN);
+	}
+	
+	private void fillTableFlagSong() {
+		this.typesTable = new Hashtable<String, FlagSongs>();
+		this.tonesTable = new Hashtable<String, FlagSongs>();
+		this.toneNumberTable = new Hashtable<String, FlagSongs>();
+		this.accidentTable = new Hashtable<String, FlagSongs>();
+		
 		this.typesTable.put("Semibreve", FlagSongs.WHOLE_NOTE);
 		this.typesTable.put("Seminima", FlagSongs.HALF_NOTE);
 		this.typesTable.put("Minima", FlagSongs.QUARTER_NOTE);
@@ -133,19 +162,31 @@ public class NewNote extends JFrame {
 	}
 	
 	public void createNote() {
+		ArrayList<Flag> listFlags = new ArrayList<Flag>();
 		String type = (String) this.types_notes.getSelectedItem();
 		String tone = (String) this.tones.getSelectedItem();
 		String accident = (String) this.accidents.getSelectedItem();
 		
-		this.player.addNote(this.tonesTable.get(tone.charAt(0)), this.accidentTable.get(accident), 
-				this.toneNumberTable.get(tone.charAt(1)), this.typesTable.get(type));
+		this.player.addNote(this.tonesTable.get(tone.substring(0, 1)), this.accidentTable.get(accident), 
+				this.toneNumberTable.get(tone.substring(1, 2)), this.typesTable.get(type));
 		
 		if(((ProxyDocument) this.doc).addBarCompass) {
 			this.player.addBarCompass();
 			((ProxyDocument) this.doc).addBarCompass = false;
 		}
 		
-		((ProxyDocument) this.doc).addNote(0, null);
+		try{
+			listFlags.add(this.tableFlags.get(type));
+			listFlags.add(Flag.NONE);
+			listFlags.add(this.tableFlags.get(tone.substring(0, 1)));
+			listFlags.add(this.tableFlags.get(accident));
+		}
+		catch(NullPointerException ex) {
+			System.out.println("Erro na criacao de notas - 101");
+			ex.printStackTrace();
+		}
+		
+		((ProxyDocument) this.doc).addNote(0, listFlags);
 		
 		this.dispose();
 	}

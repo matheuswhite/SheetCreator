@@ -14,13 +14,11 @@ public class MainWindow extends JFrame{
 	
 	private Menu menu;
 	private DocumentView docview;
-	private JPanel actualpanel;
 	private PlayerSong player;
 	
 	public MainWindow() {
 		this.menu = new Menu();
 		this.docview = new DocumentView(this);
-		this.actualpanel = new JPanel();
 		this.player = new PlayerSong();
 		
 		this.setJMenuBar(this.menu);

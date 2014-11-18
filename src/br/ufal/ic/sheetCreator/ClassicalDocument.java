@@ -1,11 +1,9 @@
 package br.ufal.ic.sheetCreator;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
-import javax.swing.JLabel;
-
-import br.ufal.ic.sheetCreator.decorator.Decorator;
 import br.ufal.ic.sheetCreator.decorator.MusicalStaff;
 
 public class ClassicalDocument extends Document {

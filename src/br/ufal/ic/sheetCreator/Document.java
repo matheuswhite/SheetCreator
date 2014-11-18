@@ -1,17 +1,14 @@
 package br.ufal.ic.sheetCreator;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import br.ufal.ic.sheetCreator.decorator.Decorator;
-import br.ufal.ic.sheetCreator.decorator.Flag;
-import br.ufal.ic.sheetCreator.decorator.MusicalStaff;
-import br.ufal.ic.sheetCreator.decorator.Notes;
+import br.ufal.ic.sheetCreator.decorator.*;
 import br.ufal.ic.sheetCreator.factory.Factory;
 import br.ufal.ic.sheetCreator.factory.WholeNoteFactory;
 
@@ -19,8 +16,6 @@ public abstract class Document extends JPanel implements IDocument {
 	
 	private JLabel title;
 	private JLabel author;
-	private Font auxfont;
-	private String auxstring;
 	private int titleWidth;
 	private int titleCoordinate_x;
 	private int titleCoordinate_y;
@@ -94,8 +89,6 @@ public abstract class Document extends JPanel implements IDocument {
 		else if(currrentPosition.get(Document.TYPE_NOTE).equals(Flag.EIGHTH_NOTE)) {
 			
 		}
-		
-		currrentPosition.remove(Document.TYPE_NOTE);
 		
 		Decorator note = factory.createDecoratorItem(staff, pos_x, pos_y, currrentPosition);
 		

@@ -13,9 +13,13 @@ public class PlayerSong{
 	public PlayerSong() {
 		this.song = "";
 		this.player = new Player();
+		
+		this.fillHashTable();
 	}
 	
 	private void fillHashTable() {
+		this.notes = new Hashtable<FlagSongs, String>();
+		
 		this.notes.put(FlagSongs.WHOLE_NOTE, "w");
 		this.notes.put(FlagSongs.HALF_NOTE, "h");
 		this.notes.put(FlagSongs.QUARTER_NOTE, "q");

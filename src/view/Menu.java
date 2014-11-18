@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
+import javax.swing.JDialog;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -79,7 +80,12 @@ public class Menu extends JMenuBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				NewNote newnote = new NewNote(docview, player);
+				if(docview.getPages().size() != 0) {
+					NewNote newnote = new NewNote(docview, player);
+				}
+				else {
+					JDialog dialog = new JDialog();
+				}
 			}
 		});
 		

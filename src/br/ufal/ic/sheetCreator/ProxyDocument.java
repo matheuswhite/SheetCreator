@@ -11,7 +11,7 @@ public class ProxyDocument implements IDocument{
 	
 	private List<Decorator> notes;
 	private Document doc;
-	private StaffState state;
+	private Hashtable<Integer, Flag> positionFlags;
 	
 	private int currentValueInCompass = 0;
 	private int currentPosition = 1;
@@ -23,15 +23,24 @@ public class ProxyDocument implements IDocument{
 	public ProxyDocument(Document doc) {
 		this.doc = doc;
 		this.notes = new LinkedList<Decorator>();
-		this.state = new StaffState(doc.getStaffs().get(0));
-	}
-	
-	public StaffState getStaffState() {
-		return this.state;
+		this.fillPositionFlagsTable();
 	}
 	
 	public Document getDoc() {
 		return this.doc;
+	}
+	
+	private void fillPositionFlagsTable() {
+		this.positionFlags = new Hashtable<Integer, Flag>();
+		
+		this.positionFlags.put(1, Flag.PRIMEIRA);
+		this.positionFlags.put(2, Flag.SEGUNDA);
+		this.positionFlags.put(3, Flag.TERCEIRA);
+		this.positionFlags.put(4, Flag.QUARTA);
+		this.positionFlags.put(5, Flag.QUINTA);
+		this.positionFlags.put(6, Flag.SEXTA);
+		this.positionFlags.put(7, Flag.SETIMA);
+		this.positionFlags.put(8, Flag.OITAVA);
 	}
 	
 	private double valNote(Flag dec) {
@@ -67,9 +76,12 @@ public class ProxyDocument implements IDocument{
 	public Decorator addNote(int currentStaff, ArrayList<Flag> currentPosisition) {
 		Decorator dec = null;
 		double val = 0;
-		ArrayList<Flag> listFlags = null;
+		ArrayList<Flag> listFlags = new ArrayList<Flag>();
 		
 		listFlags.add(currentPosisition.get(Document.TYPE_NOTE));
+		listFlags.add(Flag.NONE);
+		listFlags.add(currentPosisition.get(Notes.TONE_POSITION));
+		listFlags.add(currentPosisition.get(Notes.ACCIDENTAL_SYMBOL));
 		
 		val = this.valNote(currentPosisition.get(Document.TYPE_NOTE));
 		
@@ -79,37 +91,57 @@ public class ProxyDocument implements IDocument{
 			return null;
 		}
 		
-		if(this.currentPosition >= 8) {
-			this.currentPosition = 1;
-			this.currentStaff++;
-		}
-		
-		if(this.currentValueInCompass == 4){
-			this.addBarCompass = true;
-			this.currentValueInCompass = 0;
-		}
-		if(this.currentValueInCompass <= 4) {
-			this.currentPosition++;
-		}
-		else if(this.currentValueInCompass > 4) {
-			if(this.currentPosition >= 1 && this.currentPosition <= 3) {
+		if(this.currentPosition >= 1 && this.currentPosition <= 4) {
+			if(this.currentValueInCompass == 4) {
+				this.updateNotes(listFlags, dec);
 				this.currentPosition = 5;
 			}
-			else if(this.currentPosition >= 5 && this.currentPosition <= 7) {
+			else if(this.currentValueInCompass < 4) {
+				this.updateNotes(listFlags, dec);
+				this.currentPosition++;
+			}
+			else {
+				this.currentPosition = 5;
+				this.updateNotes(listFlags, dec);
+				this.currentPosition++;
+			}
+		}
+		else if(this.currentPosition >= 5 && this.currentPosition < 7) {
+			if(this.currentValueInCompass == 4) {
+				this.updateNotes(listFlags, dec);
 				this.currentPosition = 1;
 				this.currentStaff++;
 			}
+			else if(this.currentValueInCompass < 4) {
+				this.updateNotes(listFlags, dec);
+				this.currentPosition++;
+			}
+			else {
+				this.currentPosition = 1;
+				this.currentStaff++;
+				this.updateNotes(listFlags, dec);
+			}
+		}
+		else if(this.currentPosition == 8) {
+			if(this.currentValueInCompass <= 4) {
+				this.updateNotes(listFlags, dec);
+				this.currentPosition = 1;
+				this.currentStaff++;
+			}
+			else {
+				this.currentPosition = 1;
+				this.currentStaff++;
+				this.updateNotes(listFlags, dec);
+			}
 		}
 		
-		
-		
-		
-		listFlags.add();
+		return dec;
+	}
+	
+	private void updateNotes(ArrayList<Flag> listFlags, Decorator dec) {
+		listFlags.add(Notes.CURSOR_POSITION, this.positionFlags.get(this.currentPosition));
 		
 		dec = this.doc.addNote(this.currentStaff, listFlags);
 		this.notes.add(dec);
-		
-		//se retornar null o doc está cheio
-		return dec;
 	}
 }
