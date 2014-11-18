@@ -1,7 +1,6 @@
 package br.ufal.ic.sheetCreator.decorator;
 
 import java.util.List;
-
 import java.util.Hashtable;
 
 import javax.swing.ImageIcon;
@@ -9,7 +8,7 @@ import javax.swing.JLabel;
 
 public abstract class Notes extends Decorator{
 
-	private Hashtable<Flag, Integer> ordem;
+	protected Hashtable<Flag, Integer> ordem;
 	protected JLabel accidentalSymbol;
 	
 	public static final int CURSOR_POSITION = 1;
@@ -21,29 +20,48 @@ public abstract class Notes extends Decorator{
 		
 		this.ordem = new Hashtable<Flag, Integer>();
 		
-		this.fillOrdemTable(ordem);
-		
 		this.draw();
 	}
 
+	public abstract int getWidth();
+	public abstract int getHeight();
+	public abstract String getPathImage();
+	public abstract int getPosisionCX();
+	public abstract int getPositionCY();
+	
 	protected abstract void fillOrdemTable(Hashtable<Flag, Integer> table);
-	protected abstract void drawAccidentalSymbol();
 	
 	@Override
 	protected void draw() {
+		/*
 		this.icon = new ImageIcon(this.pathImage);
 		this.label = new JLabel();
 		
 		icon.setImage(resize(icon.getImage(), this.getWidth(), this.getHeight()));
 		label.setIcon(icon);
 		
-		this.myPosition_x = this.position_x + this.ordem.get(this.flags.get(Notes.CURSOR_POSITION));
-		this.myPosition_y = this.position_y + this.ordem.get(this.flags.get(Notes.TONE_POSITION));
+		Flag flag1 = this.flags.get(Notes.CURSOR_POSITION);
+		Flag flag2 = this.flags.get(Notes.TONE_POSITION);
+		
+		this.myPosition_x = this.position_x + this.ordem.get(flag1);
+		this.myPosition_y = this.position_y + this.ordem.get(flag2);
 		
 		label.setBounds(this.myPosition_x, this.myPosition_y, this.getWidth(), this.getWidth());
 		
+		/*
 		if(this.flags.get(Notes.ACCIDENTAL_SYMBOL) != Flag.NONE) {
-			this.drawAccidentalSymbol();
-		}
+			
+		}*/
+		
+		this.icon = new ImageIcon(this.getPathImage());
+		this.label = new JLabel();
+		
+		icon.setImage(resize(icon.getImage(), this.getWidth(), this.getHeight()));
+		label.setIcon(icon);
+		
+		this.myPosition_y = this.position_x + this.getPosisionCX();
+		this.myPosition_x = this.position_y + this.getPositionCY();
+		
+		label.setBounds(this.myPosition_y, this.myPosition_x ,this.getWidth(), this.getWidth());
 	}
 }

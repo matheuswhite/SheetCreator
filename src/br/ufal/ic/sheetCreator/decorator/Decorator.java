@@ -1,6 +1,5 @@
 package br.ufal.ic.sheetCreator.decorator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Decorator extends IComponent {
