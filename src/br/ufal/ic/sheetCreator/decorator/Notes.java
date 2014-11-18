@@ -1,6 +1,5 @@
 package br.ufal.ic.sheetCreator.decorator;
 
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -28,51 +27,34 @@ public abstract class Notes extends Decorator{
 	public abstract int getPositionCY();
 	
 	protected void fillOrdemTable() {
-		System.out.println("test1");
 		
 		this.ordem = new Hashtable<Flag, Integer>();
 		
-		System.out.println("test2");
-		
 		int initval = 130;
-		int initvaly = 40;
+		int initvaly = 15;
 		
 		ordem.put(Flag.PRIMEIRA, initval);
-		ordem.put(Flag.SEGUNDA, initval + 10);
-		ordem.put(Flag.TERCEIRA, initval + 20);
-		ordem.put(Flag.QUARTA, initval + 30);
-		ordem.put(Flag.QUINTA, initval + 40);
-		ordem.put(Flag.SEXTA, initval + 50);
-		ordem.put(Flag.SETIMA, initval + 60);
-		ordem.put(Flag.OITAVA, initval + 70);
+		ordem.put(Flag.SEGUNDA, initval + 60);
+		ordem.put(Flag.TERCEIRA, initval + 120);
+		ordem.put(Flag.QUARTA, initval + 180);
+		ordem.put(Flag.QUINTA, initval + 240);
+		ordem.put(Flag.SEXTA, initval + 300);
+		ordem.put(Flag.SETIMA, initval + 360);
+		ordem.put(Flag.OITAVA, initval + 420);
 		
 		ordem.put(Flag.C, initvaly);
-		ordem.put(Flag.D, initvaly + 20);
-		ordem.put(Flag.E, initvaly + 40);
-		ordem.put(Flag.F, initvaly + 60);
-		ordem.put(Flag.G, initvaly + 80);
-		ordem.put(Flag.A, initvaly + 100);
-		ordem.put(Flag.B, initvaly + 120);
+		ordem.put(Flag.D, initvaly - 3);
+		ordem.put(Flag.E, initvaly - 12);
+		ordem.put(Flag.F, initvaly - 18);
+		ordem.put(Flag.G, initvaly - 25);
+		ordem.put(Flag.A, initvaly - 30);
+		ordem.put(Flag.B, initvaly - 37);
 		
-		System.out.println("test3");
 	}
 	
 	@Override
 	protected void draw() {
 		this.fillOrdemTable();
-		
-		if(flags.get(0).equals(Flag.WHOLE_NOTE)) {
-			System.out.println("126");
-		}
-		if(flags.get(1).equals(Flag.PRIMEIRA)) {
-			System.out.println("127");
-		}
-		if(flags.get(2).equals(Flag.C)) {
-			System.out.println("128");
-		}
-		if(flags.get(3).equals(Flag.NATURAL_SIGN)) {
-			System.out.println("129");
-		}
 		
 		this.icon = new ImageIcon(this.getPathImage());
 		this.label = new JLabel();
@@ -86,6 +68,6 @@ public abstract class Notes extends Decorator{
 		System.out.println("pos_x: " + this.myPosition_x);
 		System.out.println("pos_y: " + this.myPosition_y);
 		
-		label.setBounds(this.myPosition_x, this.myPosition_y ,this.getWidth(), this.getWidth());
+		label.setBounds(this.myPosition_y ,this.myPosition_x ,this.getWidth(), this.getWidth());
 	}
 }

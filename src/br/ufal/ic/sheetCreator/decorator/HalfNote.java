@@ -1,6 +1,5 @@
 package br.ufal.ic.sheetCreator.decorator;
 
-import java.util.Hashtable;
 import java.util.List;
 
 public class HalfNote extends Notes {
@@ -12,31 +11,43 @@ public class HalfNote extends Notes {
 
 	@Override
 	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 50;
 	}
 
 	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 60;
 	}
 
 	@Override
 	public String getPathImage() {
-		// TODO Auto-generated method stub
-		return null;
+		String exit = "resource/halfnote500.svg.png";
+		if(this.flags.get(Notes.TONE_POSITION).equals(Flag.C)) {
+			exit = "resource/halfnote500_do.svg.png";
+		}
+		
+		if(this.flags.get(Notes.ACCIDENTAL_SYMBOL).equals(Flag.SHARP)){
+			exit = "resource/halfnote500_sharp.png";
+			if(this.flags.get(Notes.TONE_POSITION).equals(Flag.C)) {
+				exit = "resource/halfnote500_do_sharp.png";
+			}
+		}
+		else if(this.flags.get(Notes.ACCIDENTAL_SYMBOL).equals(Flag.FLAT)) {
+			exit = "resource/halfnote500_flat.png";
+			if(this.flags.get(Notes.TONE_POSITION).equals(Flag.C)) {
+				exit = "resource/halfnote500_do_flat.png";
+			}
+		}
+		return exit;
 	}
 
 	@Override
 	public int getPosisionCX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.ordem.get(this.flags.get(Notes.CURSOR_POSITION));
 	}
 
 	@Override
 	public int getPositionCY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.ordem.get(this.flags.get(Notes.TONE_POSITION));
 	}
 }

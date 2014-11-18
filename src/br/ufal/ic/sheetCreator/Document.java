@@ -8,7 +8,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import br.ufal.ic.sheetCreator.decorator.*;
+import br.ufal.ic.sheetCreator.factory.EighthNoteFactory;
 import br.ufal.ic.sheetCreator.factory.Factory;
+import br.ufal.ic.sheetCreator.factory.HalfNoteFactory;
+import br.ufal.ic.sheetCreator.factory.QuarterNoteFactory;
 import br.ufal.ic.sheetCreator.factory.WholeNoteFactory;
 
 public abstract class Document extends JPanel implements IDocument {
@@ -82,36 +85,19 @@ public abstract class Document extends JPanel implements IDocument {
 			factory = new WholeNoteFactory();
 		}
 		else if(currrentPosition.get(Document.TYPE_NOTE).equals(Flag.HALF_NOTE)) {
-		
+			factory = new HalfNoteFactory();
 		}
 		else if(currrentPosition.get(Document.TYPE_NOTE).equals(Flag.QUARTER_NOTE)) {
-			
+			factory = new QuarterNoteFactory();
 		}
 		else if(currrentPosition.get(Document.TYPE_NOTE).equals(Flag.EIGHTH_NOTE)) {
-			
+			factory = new EighthNoteFactory();
 		}
 		
 		System.out.println("pos_x" + pos_x);
 		System.out.println("pos_y" + pos_y);
 		
-		if(currrentPosition.get(0).equals(Flag.WHOLE_NOTE)) {
-			System.out.println("114");
-		}
-		if(currrentPosition.get(1).equals(Flag.PRIMEIRA)) {
-			System.out.println("115");
-		}
-		if(currrentPosition.get(2).equals(Flag.C)) {
-			System.out.println("116");
-		}
-		if(currrentPosition.get(3).equals(Flag.NATURAL_SIGN)) {
-			System.out.println("117");
-		}
-		
 		Decorator note = factory.createDecoratorItem(staff, pos_x, pos_y, currrentPosition);
-		
-		if(note != null) {
-			System.out.println("103x");
-		}
 		
 		this.add(note.getLabel());
 		this.validate();

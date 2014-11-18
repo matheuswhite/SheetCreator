@@ -16,6 +16,7 @@ import br.ufal.ic.sheetCreator.FlagSongs;
 import br.ufal.ic.sheetCreator.IDocument;
 import br.ufal.ic.sheetCreator.PlayerSong;
 import br.ufal.ic.sheetCreator.ProxyDocument;
+import br.ufal.ic.sheetCreator.decorator.Decorator;
 import br.ufal.ic.sheetCreator.decorator.Flag;
 import view.DocumentView;
 
@@ -34,8 +35,10 @@ public class NewNote extends JFrame {
 	private JButton btncreate, btnclose;
 	
 	private JLabel lbltype_notes, lbltones, lblaccidents;
+	private DocumentView docview;
 	
 	public NewNote(DocumentView view, PlayerSong player) {
+		this.docview = view;
 		this.doc = view.getCurrenteEditDoc();
 		this.player = player;
 		
@@ -106,6 +109,7 @@ public class NewNote extends JFrame {
 		this.setLocation(50, 50);
 		this.setSize(400, 150);
 		this.setResizable(false);
+		this.rootPane.setDefaultButton(btncreate);
 		this.setTitle("Nova Nota");
 		this.setVisible(true);
 	}
@@ -166,35 +170,27 @@ public class NewNote extends JFrame {
 		String type = (String) this.types_notes.getSelectedItem();
 		String tone = (String) this.tones.getSelectedItem();
 		String accident = (String) this.accidents.getSelectedItem();
-		
-		this.player.addNote(this.tonesTable.get(tone.substring(0, 1)), this.accidentTable.get(accident), 
-				this.toneNumberTable.get(tone.substring(1, 2)), this.typesTable.get(type));
-		
-		if(((ProxyDocument) this.doc).addBarCompass) {
-			this.player.addBarCompass();
-			((ProxyDocument) this.doc).addBarCompass = false;
-		}
-		
+		Decorator dec = null;
 		
 		listFlags.add(this.tableFlags.get(type));
 		listFlags.add(Flag.NONE);
 		listFlags.add(this.tableFlags.get(tone.substring(0, 1)));
 		listFlags.add(this.tableFlags.get(accident));
 		
-		if(listFlags.get(0).equals(Flag.WHOLE_NOTE)) {
-			System.out.println("101");
-		}
-		if(listFlags.get(1).equals(Flag.NONE)) {
-			System.out.println("102");
-		}
-		if(listFlags.get(2).equals(Flag.C)) {
-			System.out.println("103");
-		}
-		if(listFlags.get(3).equals(Flag.NATURAL_SIGN)) {
-			System.out.println("104");
-		}
+		dec = ((ProxyDocument) this.doc).addNote(0, listFlags);
 		
-		((ProxyDocument) this.doc).addNote(0, listFlags);
+		if(dec == null) {
+			docview.newPage();
+		}
+		else {
+			this.player.addNote(this.tonesTable.get(tone.substring(0, 1)), this.accidentTable.get(accident), 
+					this.toneNumberTable.get(tone.substring(1, 2)), this.typesTable.get(type));
+			
+			if(((ProxyDocument) this.doc).addBarCompass) {
+				this.player.addBarCompass();
+				((ProxyDocument) this.doc).addBarCompass = false;
+			}
+		}
 		
 		this.dispose();
 	}

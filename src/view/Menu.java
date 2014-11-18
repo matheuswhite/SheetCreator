@@ -125,7 +125,7 @@ public class Menu extends JMenuBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//play music
+				player.playSong();
 			}
 		});
 	}
