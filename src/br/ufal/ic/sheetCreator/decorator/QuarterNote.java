@@ -29,7 +29,7 @@ public class QuarterNote extends Notes{
 		if(this.flags.get(Notes.ACCIDENTAL_SYMBOL).equals(Flag.SHARP)){
 			exit = "resource/quarternote500_sharp.png";
 			if(this.flags.get(Notes.TONE_POSITION).equals(Flag.C)) {
-				exit = "resource/quarternote500_do_sharp.png";
+				exit = "resource/quarternote500_do.png";
 			}
 		}
 		else if(this.flags.get(Notes.ACCIDENTAL_SYMBOL).equals(Flag.FLAT)) {

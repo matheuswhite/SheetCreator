@@ -89,6 +89,8 @@ public class DocumentView extends JPanel{
 			pages.clear();
 			pages.add(doc);
 			
+			((MainWindow) this.mainframe).getPlayer().clearSongString();
+			
 			this.setPanel((JPanel) ((ProxyDocument) this.currentDoc).getDoc());
 		}
 	}

@@ -34,6 +34,10 @@ public class MainWindow extends JFrame{
 		this.setVisible(true);
 	}
 	
+	public PlayerSong getPlayer() {
+		return this.player;
+	}
+	
 	public void createMenus() {
 		LinkedList<Integer> listTemp = new LinkedList<Integer>();
 		

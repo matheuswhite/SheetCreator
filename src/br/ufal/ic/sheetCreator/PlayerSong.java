@@ -53,6 +53,10 @@ public class PlayerSong{
 		this.player.play(song);
 	}
 	
+	public void clearSongString() {
+		this.song = "";
+	}
+	
 	public void pauseSong() {
 		this.player.pause();
 	}

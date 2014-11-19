@@ -27,7 +27,7 @@ public class HalfNote extends Notes {
 		}
 		
 		if(this.flags.get(Notes.ACCIDENTAL_SYMBOL).equals(Flag.SHARP)){
-			exit = "resource/halfnote500_sharp.png";
+			exit = "resource/halfnote500-sharp.png";
 			if(this.flags.get(Notes.TONE_POSITION).equals(Flag.C)) {
 				exit = "resource/halfnote500_do_sharp.png";
 			}

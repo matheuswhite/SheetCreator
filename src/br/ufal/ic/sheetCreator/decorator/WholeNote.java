@@ -54,15 +54,15 @@ public class WholeNote extends Notes{
 		}
 		
 		if(this.flags.get(Notes.ACCIDENTAL_SYMBOL).equals(Flag.SHARP)){
-			exit = "resource/wholenote501_sharp.svg.png";
+			exit = "resource/wholenote501_sharp.png";
 			if(this.flags.get(Notes.TONE_POSITION).equals(Flag.C)) {
-				exit = "resource/wholenote501_do_sharp.svg.png";
+				exit = "resource/wholenote501_do_sharp.png";
 			}
 		}
 		else if(this.flags.get(Notes.ACCIDENTAL_SYMBOL).equals(Flag.FLAT)) {
-			exit = "resource/wholenote501_flat.svg.png";
+			exit = "resource/wholenote501_flat.png";
 			if(this.flags.get(Notes.TONE_POSITION).equals(Flag.C)) {
-				exit = "resource/wholenote501_do_flat.svg.png";
+				exit = "resource/wholenote501_do_flat.png";
 			}
 		}
 		return exit;
