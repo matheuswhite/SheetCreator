@@ -28,6 +28,7 @@ public class ProxyDocument implements IDocument{
 	
 	public Document getDoc() {
 		return this.doc;
+		
 	}
 	
 	private void fillPositionFlagsTable() {
