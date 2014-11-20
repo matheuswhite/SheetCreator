@@ -10,6 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import br.ufal.ic.sheetCreator.PlayerSong;
@@ -84,7 +85,7 @@ public class Menu extends JMenuBar {
 					NewNote newnote = new NewNote(docview, player);
 				}
 				else {
-					JDialog dialog = new JDialog();
+					JOptionPane.showMessageDialog(null, "Sem Documento!");
 				}
 			}
 		});
@@ -93,7 +94,12 @@ public class Menu extends JMenuBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//deletar nota
+				if(docview.getPages().size() != 0) {
+					docview.nextPage();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Sem Documento!");
+				}
 			}
 		});
 		
@@ -101,7 +107,12 @@ public class Menu extends JMenuBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				docview.nextPage();
+				if(docview.getPages().size() != 0) {
+					docview.prevPage();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Sem Documento!");
+				}
 			}
 		});
 		
@@ -109,7 +120,7 @@ public class Menu extends JMenuBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				docview.prevPage();
+				//desfazer
 			}
 		});
 		
@@ -117,15 +128,12 @@ public class Menu extends JMenuBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//desfazer
-			}
-		});
-		
-		itens.get(8).addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				player.playSong();
+				if(docview.getPages().size() != 0) {
+					player.playSong();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Sem Documento!");
+				}
 			}
 		});
 	}

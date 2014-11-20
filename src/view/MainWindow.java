@@ -73,12 +73,6 @@ public class MainWindow extends JFrame{
 		this.menu.addMenuItem(temp, "Nova Nota", "", listTemp);
 		listTemp.clear();
 		
-		listTemp.add(KeyEvent.VK_DELETE);
-		listTemp.add(KeyEvent.VK_DELETE);
-		listTemp.add(ActionEvent.CTRL_MASK);
-		this.menu.addMenuItem(temp, "Deletar Nota", "", listTemp);
-		listTemp.clear();
-		
 		/*Navegacao*/
 		temp = this.menu.createMenu("Navegacao", KeyEvent.VK_V, "");
 		
