@@ -48,7 +48,7 @@ public abstract class Document extends JPanel implements IDocument {
 	
 	@Override
 	public void setTitle(String title) {
-		if(title == null || title == "") {
+		if(title.isEmpty()) {
 			title = "Sem Titulo";
 		}
 		
@@ -61,8 +61,8 @@ public abstract class Document extends JPanel implements IDocument {
 	
 	@Override
 	public void setAuthor(String author) {
-		if(author == null || author == "") {
-			author = "Sem Autor";
+		if(author.isEmpty()) {
+			author = "Autor Desconhecido";
 		}
 		
 		this.author = new JLabel(author);

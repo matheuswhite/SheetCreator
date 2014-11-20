@@ -87,7 +87,8 @@ public class ProxyDocument implements IDocument{
 		
 		this.currentValueInCompass += val;
 		
-		if(this.currentStaff >= 4){
+		if(this.currentStaff > 4){
+			System.out.println("staff autual: " + this.currentStaff);
 			return null;
 		}
 		
@@ -108,11 +109,12 @@ public class ProxyDocument implements IDocument{
 				this.currentValueInCompass = 0;
 			}
 		}
-		else if(this.currentPosition >= 5 && this.currentPosition < 7) {
+		else if(this.currentPosition >= 5 && this.currentPosition <= 7) {
 			if(this.currentValueInCompass == 4) {
 				dec = this.updateNotes(listFlags);
 				this.currentPosition = 1;
 				this.currentStaff++;
+				this.currentValueInCompass = 0;
 			}
 			else if(this.currentValueInCompass < 4) {
 				dec = this.updateNotes(listFlags);
@@ -122,6 +124,8 @@ public class ProxyDocument implements IDocument{
 				this.currentPosition = 1;
 				this.currentStaff++;
 				dec = this.updateNotes(listFlags);
+				this.currentPosition++;
+				this.currentValueInCompass = 0;
 			}
 		}
 		else if(this.currentPosition == 8) {
@@ -159,11 +163,13 @@ public class ProxyDocument implements IDocument{
 		
 		dec = this.doc.addNote(this.currentStaff - 1, listFlags);
 		
-		if(dec == null) {
-			System.out.println("null socorro!!!");
-		}
 		
-		this.notes.add(dec);
+		try {
+			this.notes.add(dec);
+		}
+		catch (NullPointerException ex) {
+			ex.printStackTrace();
+		}
 		
 		return dec;
 	}

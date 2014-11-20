@@ -8,8 +8,10 @@ import java.util.Hashtable;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import br.ufal.ic.sheetCreator.FlagSongs;
@@ -181,6 +183,10 @@ public class NewNote extends JFrame {
 		
 		if(dec == null) {
 			docview.newPage();
+			
+			this.dispose();
+			
+			JOptionPane.showMessageDialog(null, "Pagina Atual Cheia.\nCrie a nota novamente!");
 		}
 		else {
 			this.player.addNote(this.tonesTable.get(tone.substring(0, 1)), this.accidentTable.get(accident), 
@@ -190,8 +196,10 @@ public class NewNote extends JFrame {
 				this.player.addBarCompass();
 				((ProxyDocument) this.doc).addBarCompass = false;
 			}
+			
+			this.dispose();
 		}
 		
-		this.dispose();
+		
 	}
 }
